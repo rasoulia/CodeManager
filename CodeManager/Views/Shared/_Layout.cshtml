@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    <meta name="keywords" content="HTML5 Template">
+    <meta name="description" content="Responsive HTML5 Template">
+    <meta name="author" content="author.com">
+    <title>@ViewData["Title"]</title>
+
+    <!-- STYLESHEET -->
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
+
+    <!-- icon -->
+    <link rel="stylesheet" href="/assets/mainfont/mainfont.css">
+    <link rel="stylesheet" href="/assets/font-awesome/font-awesome.min.css">
+
+    <!-- Vendor -->
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <!-- Custom -->
+    <link rel="stylesheet" href="/assets/code/css/code.css">
+    <link rel="stylesheet" href="/assets/code/css/page.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <partial name="_Header" />
+    <main>
+        <div class="container">
+            @RenderBody()
+        </div>
+    </main>
+    <partial name="_Footer" />
+    <!-- JAVA SCRIPT -->
+    <script src="/assets/jquery/jquery.min.js"></script>
+    <script src="/assets/jquery/jquery.validate.min.js"></script>
+    <script src="/assets/jquery/jquery.validate.unobtrusive.js"></script>
+    <script src="/assets/jquery/jquery.unobtrusive-ajax.js"></script>
+    <script src="/assets/velocity/velocity.min.js"></script>
+    <script src="/assets/code/js/code.js"></script>
+    <script src="/assets/code/js/page.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

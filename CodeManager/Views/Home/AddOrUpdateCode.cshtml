@@ -1,0 +1,43 @@
+﻿@using CodeManager.Models;
+@model Code
+@{
+    ViewData["Title"] = Model.Id>0?Model.Title:"Create Topic";
+}
+
+<form asp-action="AddOrUpdateCode" asp-controller="Home" method="post">
+    <div class="create">
+        <div class="create__head">
+            <div class="create__title"><img src="/assets/mainfont/New_Topic.svg" alt="New topic">@((Model.Id>0)?"Update Thread":"Create New Thread")</div>
+        </div>
+        <div class="create__section">
+            <label asp-for="Title" class="create__label">Thread Title</label>
+            <input asp-for="Title" class="form-control" placeholder="Add here">
+            <span asp-validation-for="Title" class="text-danger mt-2"></span>
+        </div>
+        <div class="create__section create__textarea">
+            <label asp-for="Description" class="create__label">Description</label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger mt-2"></span>
+        </div>
+        <div class="create__footer">
+            <a href="/" class="create__btn-cansel btn">Cancel</a>
+            <button type="submit" class="create__btn-create btn btn--type-02">@((Model.Id>0)?"Update Thread":"Create Thread")</button>
+        </div>
+    </div>
+</form>
+@section Scripts{
+    <script src="/assets/tinymce/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+          selector: '#Description',
+          plugins: [
+            'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
+            'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
+            'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount','codesample'
+          ],
+          toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+            'alignleft aligncenter alignright alignjustify | ' +
+            'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+        });
+    </script>
+}

@@ -1,0 +1,32 @@
+﻿<header>
+    <div class="header js-header js-dropdown">
+        <div class="container">
+            <div class="header__logo">
+                <h1>
+                    <img src="/assets/mainfont/Logo_Forum.svg" alt="logo">
+                </h1>
+                <div class="header__logo-btn" data-dropdown-btn="logo">
+                    Unity<i class="icon-Arrow_Below"></i>
+                </div>
+                <nav class="dropdown dropdown--design-01" data-dropdown-list="logo">
+                    <ul class="dropdown__catalog">
+                        <li><a asp-action="Index" asp-controller="Home">Home Page</a></li>
+                        <li><a asp-action="AddOrUpdateCode" asp-controller="Home" asp-route-id="0">Create Topic Page</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header__search col-md-10">
+                <form asp-action="SearchCode" asp-controller="Home" method="get">
+                    <label>
+                        <i class="icon-Search js-header-search-btn-open"></i>
+                        <input name="search" id="search" type="search" placeholder="Search all forums" class="form-control">
+                    </label>
+                </form>
+                <div class="header__search-close js-header-search-btn-close"><i class="icon-Cancel"></i></div>
+            </div>
+        </div>
+        <div class="header__offset-btn">
+            <a asp-action="AddOrUpdateCode" asp-controller="Home" asp-route-id="0"><img src="/assets/mainfont/New_Topic.svg" alt="New Topic"></a>
+        </div>
+    </div>
+</header>

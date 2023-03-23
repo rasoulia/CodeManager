@@ -1,0 +1,74 @@
+﻿@using CodeManager.ViewModels;
+@model CodeViewModel
+@{
+ViewData["Title"] = "Home Page";
+}
+<div class="posts">
+    <div class="posts__head">
+        <div class="posts__topic">Topic</div>
+    </div>
+    <div class="posts__body">
+        @if(Model.Codes is not null && Model.Codes.Any())
+        {
+            for(int i = 0; i < Model.Codes.Count; i++)
+            {
+                <div class="posts__item @((i%2==0)?"":"bg-f2f4f6")">
+                    <div class="posts__section-left">
+                        <div class="posts__topic">
+                            <div class="posts__content">
+                                <a asp-action="AddOrUpdateCode" asp-controller="Home" asp-route-id="@Model.Codes[i].Id">
+                                    <h3>@Model.Codes[i].Title</h3>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="posts__item bg-f2f4f6 alert alert-info m-2 p-2">
+                <div class="posts__section-left">
+                    <div class="posts__topic">
+                        <div class="posts__content">
+                            <h3>You don't have any code here</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+@if (Model.Codes is not null && Model.Codes.Any())
+{
+    <form asp-action="Index" asp-controller="Home" method="get" id="CodeForm">
+        <input type="hidden" asp-for="Page">
+        <div class="pagination">
+            <span class="pagination__number-indicator"></span>
+            <button onclick="submitPage('@(Model.Page-1)')" class="button pagination__arrow @((Model.Page-1>0)?"":"pagination__arrow--disabled")">
+                <span class="pagination__arrow-half"></span>
+                <span class="pagination__arrow-half"></span>
+            </button>
+            @for (int i = Model.StartPages; i <= Model.EndPages; i++)
+            {
+                <button onclick="submitPage('@i')" class="button pagination__number @((i==Model.Page)?"pagination__number--active":"")">@i</button>
+            }
+            <button onclick="submitPage('@(Model.Page+1)')" class="button pagination__arrow pagination__arrow--right @((Model.Page+1<=Model.EndPages)?"":"pagination__arrow--disabled")">
+                <span class="pagination__arrow-half"></span>
+                <span class="pagination__arrow-half"></span>
+            </button>
+        </div>
+    </form>
+}
+
+@section Scripts{
+    <script>
+        function submitPage(page)
+        {
+            document.getElementById('Page').value=page;
+            document.getElementById('CodeForm').submit();
+        }
+    </script>
+}
